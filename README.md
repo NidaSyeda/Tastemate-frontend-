@@ -1,12 +1,40 @@
-# React + Vite
+# 🍽️ Tastemate - Smart Food Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tastemate is a modern React-based web application designed to connect PG students, mess services, and hotels on a single platform.  
+It allows users to explore, compare, and book meals easily, while helping mess owners manage menus and orders efficiently.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- **User Authentication** – Sign up, log in, and manage your profile
+- **Browse Mess & Hotels** – Explore food options with images and details
+- **Search & Filter** – Quickly find meals based on preferences
+- **Online Ordering** – Add to cart, checkout, and confirm orders
+- **Payment Integration** – Secure payment gateway for hassle-free transactions
+- **Responsive Design** – Works smoothly on desktop and mobile devices
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+**Frontend:**  
+- React.js  
+- Vite  
+- CSS / Custom Styling  
 
-## Expanding the ESLint configuration
+**Backend:** *(Future Integration)*  
+- Django / FastAPI (Planned)  
+- PostgreSQL / MySQL  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📂 Folder Structure
+Tastemate-frontend/
+│── public/ # Static assets
+│── src/
+│ ├── assets/ # Images, global styles
+│ ├── components/ # Reusable UI components
+│ ├── contexts/ # Context API (Auth, Cart)
+│ ├── hooks/ # Custom React hooks
+│ ├── pages/ # Main application pages
+│ ├── services/ # API service functions
+│ ├── utils/ # Helper functions & validators
+│ ├── App.jsx # Main app component
+│ ├── main.jsx # Entry point
+│── package.json # Project dependencies
+│── vite.config.js # Vite configuration
+
+
