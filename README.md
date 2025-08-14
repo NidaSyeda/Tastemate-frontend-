@@ -21,20 +21,4 @@ It allows users to explore, compare, and book meals easily, while helping mess o
 - Django / FastAPI (Planned)  
 - PostgreSQL / MySQL  
 
-## 📂 Folder Structure
-Tastemate-frontend/
-│── public/ # Static assets
-│── src/
-│ ├── assets/ # Images, global styles
-│ ├── components/ # Reusable UI components
-│ ├── contexts/ # Context API (Auth, Cart)
-│ ├── hooks/ # Custom React hooks
-│ ├── pages/ # Main application pages
-│ ├── services/ # API service functions
-│ ├── utils/ # Helper functions & validators
-│ ├── App.jsx # Main app component
-│ ├── main.jsx # Entry point
-│── package.json # Project dependencies
-│── vite.config.js # Vite configuration
-
 
