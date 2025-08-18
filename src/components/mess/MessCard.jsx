@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Star, ThumbsUp, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import './MessCard.css';
 
 const MessCard = ({ mess }) => {
   // Default mess object with fallback values if props are missing
   const {
     id = '1',
     name = 'Mess Name',
-    image = '/images/food1.jpg', 
+    image = '', 
     rating = 4.2,
     reviews = 120,
     specialties = ['North Indian', 'South Indian'],
@@ -27,41 +28,41 @@ const MessCard = ({ mess }) => {
   };
 
   return (
-    <Link to={`/mess/${id}`} className="block">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <Link to={`/mess/${id}`} className="mess-card">
+      <div>
         {/* Image container with recommended badge */}
-        <div className="relative h-48">
+        <div className="mess-card-image-container">
           <img 
             src={image} 
             alt={name} 
-            className="w-full h-full object-cover"
+            className="mess-card-image"
           />
           {recommended && (
-            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+            <div className="recommended-badge">
               Recommended
             </div>
           )}
         </div>
         
         {/* Content */}
-        <div className="p-4">
+        <div className="mess-card-content">
           {/* Header: Name and Rating */}
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-            <div className="flex items-center">
-              <Star size={16} className="text-yellow-500 fill-yellow-500" />
-              <span className="ml-1 text-sm font-medium">{rating}</span>
-              <span className="text-xs text-gray-500 ml-1">({reviews})</span>
+          <div className="mess-card-header">
+            <h3 className="mess-card-name">{name}</h3>
+            <div className="mess-card-rating">
+              <Star size={16} className="star-icon" />
+              <span className="rating-value">{rating}</span>
+              <span className="reviews-count">({reviews})</span>
             </div>
           </div>
           
           {/* Specialties */}
-          <div className="mb-3">
-            <div className="flex flex-wrap gap-1">
+          <div className="mess-card-specialties">
+            <div className="specialties-container">
               {specialties.map((specialty, index) => (
                 <span 
                   key={index} 
-                  className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
+                  className="specialty-tag"
                 >
                   {specialty}
                 </span>
@@ -70,25 +71,25 @@ const MessCard = ({ mess }) => {
           </div>
           
           {/* Details */}
-          <div className="flex flex-col gap-1 mb-3 text-sm text-gray-600">
-            <div className="flex items-center">
-              <Clock size={14} className="mr-1" />
+          <div className="mess-card-details">
+            <div className="detail-item">
+              <Clock size={14} className="detail-icon" />
               <span>{openingHours}</span>
             </div>
-            <div className="flex items-center">
-              <MapPin size={14} className="mr-1" />
+            <div className="detail-item">
+              <MapPin size={14} className="detail-icon" />
               <span>{location}</span>
             </div>
-            <div className="font-medium text-gray-800">{price}</div>
+            <div className="mess-card-price">{price}</div>
           </div>
           
           {/* Like button */}
-          <div className="flex justify-end mt-2">
+          <div className="mess-card-actions">
             <button 
               onClick={handleLike} 
-              className={`flex items-center text-sm ${isLiked ? 'text-blue-500' : 'text-gray-500'}`}
+              className={`like-button ${isLiked ? 'liked' : ''}`}
             >
-              <ThumbsUp size={14} className={`mr-1 ${isLiked ? 'fill-blue-500' : ''}`} />
+              <ThumbsUp size={14} className={`like-icon ${isLiked ? 'filled' : ''}`} />
               <span>{isLiked ? likes + 1 : likes}</span>
             </button>
           </div>

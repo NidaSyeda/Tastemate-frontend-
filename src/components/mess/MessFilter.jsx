@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search, Filter, ChevronDown } from 'lucide-react';
+import './MessFilter.css';
 
 const MessFilter = ({ onFilterChange }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -77,14 +78,13 @@ const MessFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+    <div className="mess-filter">
       {/* Search bar */}
-      <div className="flex items-center border rounded-lg p-2 mb-4">
-        <Search size={18} className="text-gray-400 mr-2" />
+      <div className="search-bar">
+        <Search size={18} className="search-icon" />
         <input
           type="text"
           placeholder="Search for mess, cuisine, location..."
-          className="w-full focus:outline-none"
           value={filters.search}
           onChange={handleSearchChange}
         />
@@ -92,32 +92,30 @@ const MessFilter = ({ onFilterChange }) => {
 
       {/* Filter toggle button */}
       <button 
-        className="flex items-center text-sm font-medium text-gray-700 mb-4"
+        className="filter-toggle"
         onClick={toggleFilters}
       >
-        <Filter size={16} className="mr-2" />
+        <Filter size={16} className="filter-icon" />
         Filters
         <ChevronDown 
           size={16} 
-          className={`ml-1 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} 
+          className={`chevron-icon ${isFilterOpen ? 'rotated' : ''}`} 
         />
       </button>
 
       {/* Expandable filters section */}
       {isFilterOpen && (
-        <div className="space-y-4">
+        <div className="filters-section">
           {/* Cuisine filters */}
-          <div>
-            <h4 className="font-medium text-sm mb-2">Cuisine Type</h4>
-            <div className="flex flex-wrap gap-2">
+          <div className="filter-group">
+            <h4>Cuisine Type</h4>
+            <div className="cuisine-filters">
               {cuisineOptions.map((cuisine) => (
                 <button
                   key={cuisine}
                   onClick={() => handleCuisineChange(cuisine)}
-                  className={`px-3 py-1 text-xs rounded-full border ${
-                    filters.cuisine.includes(cuisine)
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : 'bg-white text-gray-700 border-gray-300'
+                  className={`cuisine-button ${
+                    filters.cuisine.includes(cuisine) ? 'active' : ''
                   }`}
                 >
                   {cuisine}
@@ -127,9 +125,9 @@ const MessFilter = ({ onFilterChange }) => {
           </div>
 
           {/* Rating filter */}
-          <div>
-            <h4 className="font-medium text-sm mb-2">Rating</h4>
-            <div className="flex items-center">
+          <div className="filter-group">
+            <h4>Rating</h4>
+            <div className="rating-filter">
               <input
                 type="range"
                 min="0"
@@ -137,21 +135,21 @@ const MessFilter = ({ onFilterChange }) => {
                 step="0.5"
                 value={filters.rating}
                 onChange={handleRatingChange}
-                className="w-full"
+                className="rating-slider"
               />
-              <span className="ml-2 text-sm font-medium">
+              <span className="rating-value">
                 {filters.rating > 0 ? `${filters.rating}+` : 'Any'}
               </span>
             </div>
           </div>
 
           {/* Price filter */}
-          <div>
-            <h4 className="font-medium text-sm mb-2">Price Range</h4>
+          <div className="filter-group">
+            <h4>Price Range</h4>
             <select
               value={filters.price}
               onChange={handlePriceChange}
-              className="w-full p-2 border rounded-md text-sm"
+              className="select-filter"
             >
               {priceOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -162,12 +160,12 @@ const MessFilter = ({ onFilterChange }) => {
           </div>
 
           {/* Sort options */}
-          <div>
-            <h4 className="font-medium text-sm mb-2">Sort By</h4>
+          <div className="filter-group">
+            <h4>Sort By</h4>
             <select
               value={filters.sortBy}
               onChange={handleSortChange}
-              className="w-full p-2 border rounded-md text-sm"
+              className="select-filter"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
